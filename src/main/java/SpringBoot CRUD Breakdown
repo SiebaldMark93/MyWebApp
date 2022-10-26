@@ -1,0 +1,54 @@
+Breakdown:  How to SpringBoot CRUD
+
+Programs
+-SpringBoot Web
+-Spring JPA and Hibernate
+-MySQL Database
+-Thymeleaf
+-HTML5
+-CSS/Bootstrap
+-JUnit 5
+-AssertJ
+
+Steps
+1.  Create & Setup Spring Boot Project
+2.  Code Home Page
+3.  Code User Entity Class & UserRepository Interface
+4.  Code UserRepositoryTests(Unit test for data access layer)
+5.  Code Users Listing Page
+6.  Code Add User function
+7.  Code Retrieve User function
+8.  Code Edit User function
+9.  Code Delete User function
+
+How to steps/breakdown:
+
+1.  Creat & Setup Spring Boot Project (Use CodeUp Curriculum for reference)
+~Declare dependencies for:
+-Spring Web
+-Spring Data JPA
+-Thymeleaf
+-MySQL JDBC Driver
+-Spring Boot DevTools(for automatic reload changes) OPTIONAL
+-Webjars for Bootstrap
+
+2.  Create new database schema-Under Database tab--> Data Source--> MySQL
+-Under Name input "userdb@localhost
+-User: root
+-Password:
+-Click Test Connection
+    Download driver files if they are not downloaded
+-Under userdb@localhost--> right click-->New -->Schema
+    Name: usersdb
+    Collation:utf8mb4_general_ci
+-click and checkbox usersdb schema
+
+
+3.  Configure Datasource in application.properties
+Input the following:
+-spring.datasource.url=jdbc:mysql://localhost:3306/usersdb
+-spring.datasource.username=root
+-spring.datasource.password=
+-spring.jpa.hibernate.ddl-auto=update
+-spring.jpa.properties.hibernate.show_sql=true
+-server.port=8081
