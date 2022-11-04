@@ -97,3 +97,56 @@ Using Bootstrap
     -Update the <div> tag--> "class="container-fluid text-center""
     -Update <a> tag--> class="h2" th:href="@{/users}"
      * This will generate the correct url *
+
+     -STOP and REFRESH Spring to see changes
+
+----------------------------------------------------------------------------
+
+Code Data Access Layer for User module
+1.  Code user entity class that maps to the user table in the database
+    -Create new package in com.mycompany folder titled: user
+    -Create new Java class in User folder titled: User
+    -Add @Entity annotation because this is an entity class
+    -Add @Table annotation to specify that the mapping table is users.
+    -Declare fields in the entity class User (private annotations)
+    -Add @Id to indicate that this field maps to the primary column in the table
+    -Add @GeneratedValue with the paramater strategy type = generation type.IDENTITY
+        -This means the values of the id column will be generated automatically by the database.
+    -Add @Column to the email field to specify some additional properties such as "nullable = false" meaning that the value of email is required and "unique = true" meaning that the email is unique in the table users, add length of 45 characters
+    -Add @Column to the password field with length 15 characters maximum, nullable = false
+    -Add @Column to first name and last name field for length = 45, nullable = false, add name = "first name"; add name = "last name" - these are mapping column name.
+    -Generate getters and setters
+
+
+2.  Code user repository interface to use APIs of Spring Data JPA to let hibernate framework create the table.  Create CRUDRepository
+    -Create new repository for the USER repository
+    -Under user folder--> New--> Java Class --> click Interface --> Name: UserRepository
+    -extends CrudRepository, using spring, with title of the entity of User and the type of id field of Integer. Because in the java class we used Integer in the Id field
+-----------------------------------------------------------------
+
+Code Unit Tests for Data Access Layer
+
+1. Use Spring Data JPA Test
+    -Under Test folder--> Delete MyWebApplicationTests
+    -Create a new Test class under Java--> Create java class--> Name:UserRepositoryTest
+    --In order to use Spring data JPA test use annotation-->@DataJpaTest for the test class
+    --In order to run test against the real database use annotation-->@AutoConfigureTestDatabase
+    --with parameter replace = AutoConfigureTestDatabase.Replace.NONE
+        -This means that the test will be executed against the real database instead of the default in memory database.
+    --Use annotation @Rollback(false), to keep that data committed to the database
+    --Use @Autowired to reference to the user repository interface
+    -@Test method to test the first method (Add)- for adding a new User to the data base
+    -input code to add email, password, first name and last name.
+    -code repo.save method to proceed this user object into the database.
+    -Assign User savedUser to = repo.save(user).
+    -code Assertions.assertThat(savedUser).isNotNull().
+    -code Assertions.asserThat(savedUser.getId()).isGreaterThan(0).
+    --This allows us to run the test method ofr posting a new user object into the database.
+    --RUN the test
+
+
+2. Test CRUD operations on users (CREATE, RETRIEVE, UPDATE and DELETE).
+
+
+
+
